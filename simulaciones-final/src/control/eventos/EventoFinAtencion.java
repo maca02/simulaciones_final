@@ -8,8 +8,6 @@ package control.eventos;
 import control.ControladorSimulacion;
 import control.VectorEstado;
 import eventos.FinAtecion;
-//import eventos.FinMantenimiento;
-//import eventos.InicioMantenimiento;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -19,12 +17,7 @@ import model.Configuracion;
 import objects.Cliente;
 import objects.Distribuciones;
 import objects.Servidor;
-//import objects.Maquina;
 
-/**
- *
- * @author heftyn
- */
 public class EventoFinAtencion extends Evento
 {
 
@@ -68,8 +61,6 @@ public class EventoFinAtencion extends Evento
         actual.setColaClientes(anterior.getColaClientes().clone());
         actual.setServidor(anterior.getServidor().clone());
         actual.setFinAtencion(anterior.getFinAtencion().clone()); //Este lo clono asi no mas porque la que tiene la hora es la maquina
-        //actual.setFinMantenimiento(anterior.getFinMantenimiento().clone()); //Por las dudas lo clono
-        //actual.setInicioMantenimiento(anterior.getInicioMantenimiento().clone());
         actual.setLlegadaCliente(anterior.getLlegadaCliente().clone());
         
         FinAtecion newFinAtencion = new FinAtecion();
@@ -102,11 +93,9 @@ public class EventoFinAtencion extends Evento
             // PASO 3 ?????
             if(clientesQueVolvieron.size() != 0){
                 //PASO 4
-                //Collections.sort(clientesQueVolvieron, (Cliente c1, Cliente c2) -> new Double(c1.getHora_regreso_sistema()).compareTo(new Double(c2.getHora_regreso_sistema())));
                 Cliente cli = clientesQueVolvieron.get(0);
                 cli.setEstado(Cliente.Estado.SIENDO_ATENDIDO);
                 double espe = 0.0;
-                //cli.setTiempo_esperando(espe);
                 cli.setHora_regreso_sistema(espe);
                 
                 for (Cliente cliente: actual.getClientes()){
@@ -145,7 +134,6 @@ public class EventoFinAtencion extends Evento
                Cliente elegido = clientesEsperandoAtencion.get(0);
                elegido.setEstado(Cliente.Estado.SIENDO_ATENDIDO);
                 
-                //elegido.setTiempo_esperando(Double.MAX_VALUE);
                 double espe = 0.0;
                 for (Cliente cli: clientesEsperandoAtencion){
                     if(cli.equals(elegido)){
@@ -202,7 +190,6 @@ public class EventoFinAtencion extends Evento
     public void calculoTiempoEspera(Cliente cliente , VectorEstado actual, VectorEstado anterior){
         double tiempoEspera = 0.0;
          double espe = 0.0;
-        //for(Cliente cli: actual.getClientes()){
             if((cliente.getEstado().equals(Cliente.Estado.ESPERANDO_ATENCION)) && (cliente.getRegreso().equals(Cliente.Regreso.NO))){
                 tiempoEspera = cliente.getTiempo_esperando()+(actual.getReloj()- anterior.getReloj());
                 cliente.setTiempo_esperando(tiempoEspera);
@@ -220,13 +207,8 @@ public class EventoFinAtencion extends Evento
                 cliente.setTiempo_esperando(tiempoEspera);
                 if (tiempoEspera >= 20.0){
                     actual.setAcumuladoClientesQueLleganYSeVan(actual.getAcumuladoClientesQueLleganYSeVan() + 1);
-                    //List<Cliente> nuevaLista= actual.getClientes().remove(cli);
-                    //actual.setClientes(); //Funcionara???
-                    //List<Cliente> clientesActuales = clonarClientes(anterior.getClientes());
                     Cliente clienteQueEsperoDemasiado = cliente; 
                     actual.getClientes().remove(clienteQueEsperoDemasiado); //Si dios quiere nadie mas lo referenciaba jaja
-                    //clienteQueEsperoDemasiado = null;
-                    //actual.setClientes(clientesActuales);
                 }
         }
             else{

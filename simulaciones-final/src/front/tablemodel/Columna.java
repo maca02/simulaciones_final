@@ -5,10 +5,7 @@
  */
 package front.tablemodel;
 
-/**
- *
- * @author heftyn
- */
+
 public class Columna {
     private String name;
     private Class tipo;

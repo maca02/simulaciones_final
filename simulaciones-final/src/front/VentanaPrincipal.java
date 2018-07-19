@@ -683,13 +683,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             throw new InputException("Iteraciones a mostrar invalidos");
         }
         int iteracionesAMostrar = Integer.parseInt(txtIteracionesAMostrar.getText());
-//       
-//        int iteracionesAMostrar = Integer.parseInt(txtIteracionesAMostrar.getText());
-//        int minutosASimular = Integer.parseInt(txtMinutosASimular.getText());
-//        int minutoDesde = Integer.parseInt(txtMinutoDesde.getText());
-//        Double mediaLlegadaAlumnos = Double.parseDouble(txtLlegadaClienteMedia.getText());
-//        Double tiempoInscripcionHasta = Double.parseDouble(txtTiempoAtencionHasta.getText());
-//        Double tiempoInscripcionDesde = Double.parseDouble(txtTiempoAtencionDesde.getText());
+
         
         Configuracion conf = Configuracion.getConfiguracion();
         conf.setIteracionesAMostrar(iteracionesAMostrar);

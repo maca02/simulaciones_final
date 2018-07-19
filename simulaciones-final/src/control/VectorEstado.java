@@ -15,10 +15,6 @@ import objects.ColaClientes;
 import objects.Servidor;
 
 
-/**
- *
- * @author heftyn
- */
 public class VectorEstado implements VectorEstadoUI
 {
 
@@ -26,18 +22,12 @@ public class VectorEstado implements VectorEstadoUI
     
     private Evento evento;
     
-    private LlegadaCliente llegadaCliente;
-    
-    //private InicioMantenimiento inicioMantenimiento;
-    
-    //private FinMantenimiento finMantenimiento;
+    private LlegadaCliente llegadaCliente;    
     
     private ColaClientes colaClientes;
     
     private FinAtecion finAtencion;
-    
-    //private List<Maquina> maquinas;
-    
+       
     private int acumuladoAtendidos;
     
     private int acumuladoClientesPerdidos;
@@ -48,9 +38,7 @@ public class VectorEstado implements VectorEstadoUI
     
     private List<Cliente> clientes;
     
-    //private List<Cliente> alumnosInscribiendose;
-    
-    //private List<Cliente> alumnosEnCola;
+ 
     
     @Override
     public double getReloj() {

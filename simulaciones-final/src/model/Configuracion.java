@@ -5,15 +5,12 @@
  */
 package model;
 
-/**
- *
- * @author heftyn
- */
+
 public class Configuracion {
     
     private static Configuracion instancia;
 
-    //Demora inscripcion desde
+    //Demora atencion desde
     //hasta
     //UNIFORME
     private double tiempoAtencionDesde;
@@ -22,18 +19,7 @@ public class Configuracion {
     //Llegada alumnos media
     //Exponencial Negativa
     private double mediaLlegadaClientes;
-    
-    //Incio Mantenimiento desde
-    //hasta
-    //UNIFORME
-   // private double inicioMantenimientoDesde;
-    //private double inicioMantenimientoHasta;
-    
-    //Tiempo Mantenimiento desde
-    //hasta
-    //NORMAL
-   // private double tiempoMantenimientoMedio;
-    //private double tiempoMantenimientoDesviacion;
+        
     
     private int minutosASimular;   
     private int minutoDesde;
@@ -42,13 +28,9 @@ public class Configuracion {
     
     private Configuracion()
     {
-        //this.inicioMantenimientoDesde = 57;
-        //this.inicioMantenimientoHasta = 63;
         this.mediaLlegadaClientes = 5;
         this.tiempoAtencionDesde = 7.5;
         this.tiempoAtencionHasta = 10.5;
-        //this.tiempoMantenimientoDesviacion = 0.0027;
-        //this.tiempoMantenimientoMedio = 3;
         //////////////////////////////////////////////
         this.minutosASimular = 600;
         this.minutoDesde = 0;

@@ -16,13 +16,9 @@ import java.util.Random;
 import model.Configuracion;
 import objects.Cliente;
 import objects.Distribuciones;
-//import objects.Maquina;
 import objects.Servidor;
 
-/**
- *
- * @author heftyn
- */
+
 public class EventoRegresoCliente extends Evento
 {
 
@@ -41,10 +37,7 @@ public class EventoRegresoCliente extends Evento
         actual.setColaClientes(anterior.getColaClientes().clone());
         actual.setServidor(anterior.getServidor().clone());
         actual.setFinAtencion(anterior.getFinAtencion().clone());
-        //actual.setFinMantenimiento(anterior.getFinMantenimiento().clone());
-        //actual.setInicioMantenimiento(anterior.getInicioMantenimiento().clone());
         actual.setLlegadaCliente(anterior.getLlegadaCliente().clone());
-        //actual.setMaquinas(clonarMaquinas(anterior.getMaquinasList()));
         
         Random randomObject = new Random();
         FinAtecion newFinAtencion = new FinAtecion();
@@ -53,13 +46,8 @@ public class EventoRegresoCliente extends Evento
         double tAtencion = 0.0;
         double finAtencion = 0.0;
         
-//        List<Cliente> clientesQueVuelven = new ArrayList<>();
-//        for (Cliente cli : actual.getClientes()){
-//            encontrarClienteQueVuelve(cli);
-//        }
+
         List<Cliente> clienteQueVuelve = encontrarClienteQueVuelve(actual);
-        //clienteQueVuelve.setRegreso(Cliente.Regreso.SI);
-        //clienteQueVuelve.setTiempo_esperando(Double.MAX_VALUE); // OJO
         
         if (clienteQueVuelve.size() == 1){
             if (actual.getColaClientes().getColaClientes() == 0){
@@ -81,7 +69,6 @@ public class EventoRegresoCliente extends Evento
                 clienteQueVuelve.get(0).setEstado(Cliente.Estado.SIENDO_ATENDIDO);
                 clienteQueVuelve.get(0).setHora_regreso_sistema(Double.MAX_VALUE);
                 servidor.setEstado(Servidor.Estado.OCUPADO);     
-                //calculoTiempoEspera(actual,anterior);
 
                     
             }
@@ -96,8 +83,7 @@ public class EventoRegresoCliente extends Evento
         else if (actual.getColaClientes().getColaClientes()>= 5 )
         {
             //Se va de nuevo el...
-            //clienteQueVuelve.setEstado(Cliente.Estado.ESPERANDO_PARA_REGRESAR);
-            //clienteQueVuelve.setHora_regreso_sistema(actual.getReloj() + 30);
+            
             actual.setAcumuladoClientesPerdidos(actual.getAcumuladoClientesPerdidos() + 1);
             clienteQueVuelve.get(0).setEstado(Cliente.Estado.ESPERANDO_ATENCION);
             double espe = 0.0;
@@ -117,8 +103,7 @@ public class EventoRegresoCliente extends Evento
         {
             //A la cola
             clienteQueVuelve.get(0).setEstado(Cliente.Estado.ESPERANDO_ATENCION);
-            //clienteQueVuelve.setHora_regreso_sistema(Double.MAX_VALUE);
-            //calculoTiempoEspera(actual,anterior);
+      
             actual.getColaClientes().agregarAlumnoCola();
                         double espe = 0.0;
             for (Cliente cli: actual.getClientes()){
@@ -157,7 +142,6 @@ public class EventoRegresoCliente extends Evento
                         cli.setEstado(Cliente.Estado.SIENDO_ATENDIDO);
                         cli.setHora_regreso_sistema(Double.MAX_VALUE);
                         servidor.setEstado(Servidor.Estado.OCUPADO);     
-                        //calculoTiempoEspera(actual,anterior);
 
 
                     }
@@ -172,8 +156,7 @@ public class EventoRegresoCliente extends Evento
                 else if (actual.getColaClientes().getColaClientes()>= 5 )
                 {
                         //Se va de nuevo el...
-                        //clienteQueVuelve.setEstado(Cliente.Estado.ESPERANDO_PARA_REGRESAR);
-                        //clienteQueVuelve.setHora_regreso_sistema(actual.getReloj() + 30);
+                        
                         actual.setAcumuladoClientesPerdidos(actual.getAcumuladoClientesPerdidos() + 1);
                         cli.setEstado(Cliente.Estado.ESPERANDO_ATENCION);
                         double espe = 0.0;
@@ -193,8 +176,7 @@ public class EventoRegresoCliente extends Evento
         {
             //A la cola
             cli.setEstado(Cliente.Estado.ESPERANDO_ATENCION);
-            //clienteQueVuelve.setHora_regreso_sistema(Double.MAX_VALUE);
-            //calculoTiempoEspera(actual,anterior);
+           
             actual.getColaClientes().agregarAlumnoCola();
                         double espe = 0.0;
             for (Cliente cliente: actual.getClientes()){
@@ -230,7 +212,6 @@ public class EventoRegresoCliente extends Evento
                         cli.setEstado(Cliente.Estado.SIENDO_ATENDIDO);
                         cli.setHora_regreso_sistema(Double.MAX_VALUE);
                         servidor.setEstado(Servidor.Estado.OCUPADO);     
-                        //calculoTiempoEspera(actual,anterior);
 
 
                     }
@@ -245,8 +226,7 @@ public class EventoRegresoCliente extends Evento
                 else if (actual.getColaClientes().getColaClientes()>= 5 )
                 {
                         //Se va de nuevo el...
-                        //clienteQueVuelve.setEstado(Cliente.Estado.ESPERANDO_PARA_REGRESAR);
-                        //clienteQueVuelve.setHora_regreso_sistema(actual.getReloj() + 30);
+                        
                         actual.setAcumuladoClientesPerdidos(actual.getAcumuladoClientesPerdidos() + 1);
                         cli.setEstado(Cliente.Estado.ESPERANDO_ATENCION);
                         double espe = 0.0;
@@ -255,9 +235,7 @@ public class EventoRegresoCliente extends Evento
                                 cliente.setTiempo_esperando(espe);
                                 cli.setHora_regreso_sistema(espe);
                             }
-//                            else{
-//                                calculoTiempoEspera(cliente,actual, anterior);
-//                            }
+//                           
                         }
 
                         actual.getClientes().remove(cli);
@@ -267,19 +245,16 @@ public class EventoRegresoCliente extends Evento
         {
             //A la cola
             cli.setEstado(Cliente.Estado.ESPERANDO_ATENCION);
-            //clienteQueVuelve.setHora_regreso_sistema(Double.MAX_VALUE);
-            //calculoTiempoEspera(actual,anterior);
+       
             actual.getColaClientes().agregarAlumnoCola();
                         double espe = 0.0;
             for (Cliente cliente: actual.getClientes()){
-                if(cli.equals(cli)){
-                    cli.setTiempo_esperando(espe);
-                    cli.setHora_regreso_sistema(espe);
+                if(cliente.equals(cli)){
+                    cliente.setTiempo_esperando(espe);
+                    cliente.setHora_regreso_sistema(espe);
 
                 }
-//                else{
-//                    calculoTiempoEspera(cliente,actual, anterior);
-//                }
+
             }
         } 
                 }
@@ -312,13 +287,12 @@ public class EventoRegresoCliente extends Evento
             
         }
         return clientesQueVuelven;
-        //throw new NullPointerException("No se encontro el alumno que regresaba a los : " + actual.getReloj());
     }
     
     public void calculoTiempoEspera(Cliente cli , VectorEstado actual, VectorEstado anterior){
         double tiempoEspera = 0.0;
          double espe = 0.0;
-        //for(Cliente cli: actual.getClientes()){
+        
             if((cli.getEstado().equals(Cliente.Estado.ESPERANDO_ATENCION)) && (cli.getRegreso().equals(Cliente.Regreso.NO))){
                 tiempoEspera = cli.getTiempo_esperando()+(actual.getReloj()- anterior.getReloj());
                 cli.setTiempo_esperando(tiempoEspera);
@@ -338,13 +312,9 @@ public class EventoRegresoCliente extends Evento
                 cli.setTiempo_esperando(tiempoEspera);
                 if (tiempoEspera >= 20.0){
                     actual.setAcumuladoClientesQueLleganYSeVan(actual.getAcumuladoClientesQueLleganYSeVan() + 1);
-                    //List<Cliente> nuevaLista= actual.getClientes().remove(cli);
-                    //actual.setClientes(); //Funcionara???
-                    //List<Cliente> clientesActuales = clonarClientes(anterior.getClientes());
                     Cliente clienteQueEsperoDemasiado = cli; 
                     actual.getClientes().remove(clienteQueEsperoDemasiado); //Si dios quiere nadie mas lo referenciaba jaja
-                    //clienteQueEsperoDemasiado = null;
-                    //actual.setClientes(clientesActuales);
+                    
                 }
         }
             else{

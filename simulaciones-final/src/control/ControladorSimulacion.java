@@ -8,16 +8,12 @@ package control;
 import control.eventos.Evento;
 import front.Estadisticas;
 import front.VentanaPrincipal;
-//import front.tablemodel.SetearValores;
 import java.util.*;
 import model.Configuracion;
 import model.VectorEstadoUI;
 import objects.*;
 
-/**
- *
- * @author heftyn
- */
+
 public class ControladorSimulacion 
 {
     VentanaPrincipal vistaAplicacion;

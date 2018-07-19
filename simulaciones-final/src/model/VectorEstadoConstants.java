@@ -5,10 +5,7 @@
  */
 package model;
 
-/**
- *
- * @author heftyn
- */
+
 public interface VectorEstadoConstants 
 {
     int COL_RELOJ = 0;

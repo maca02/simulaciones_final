@@ -12,10 +12,7 @@ import javax.swing.table.TableColumnModel;
 import model.VectorEstadoConstants;
 import model.VectorEstadoUI;
 
-/**
- *
- * @author heftyn
- */
+
 public final class VectorEstadoTableModel extends DefaultTableModel implements VectorEstadoConstants {
 
     private List<VectorEstadoUI> datos;
@@ -169,21 +166,7 @@ public final class VectorEstadoTableModel extends DefaultTableModel implements V
         
     }
     
-//    public List<Columna> getColumnaList()
-//    {
-//        return columns;
-//    }
-//
-//    public TableColumnModel getColumnModel() {
-//        DefaultTableColumnModel tcModel = new DefaultTableColumnModel();
-//        for (int i = 0; i < columns.size() ; i++)
-//        {
-//            TableColumn tc = new TableColumn(i, columns.get(i).getSize());
-//            tc.setCellRenderer(new VECellRenderer());
-//            tcModel.addColumn(tc);
-//        }
-//        return tcModel;
-//    }
+
 
     public void setDatos(List<VectorEstadoUI> modelo) {
         datos = modelo;

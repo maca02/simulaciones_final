@@ -8,18 +8,11 @@ package control.eventos;
 import java.util.ArrayList;
 import java.util.List;
 import objects.Cliente;
-//import objects.Maquina;
 
-/**
- *
- * @author heftyn
- */
 public abstract class Evento 
 {
     public static final Evento Inicial = new EventoInicial("Inicial");
     public static final Evento FinAtencion = new EventoFinAtencion("Fin atencion");
-    //public static final Evento FinMantenimiento = new EventoFinMantenimiento("Fin mantenimiento");
-    //public static final Evento InicioMantenimiento = new EventoInicioMantenimiento("Inicio ronda mantenimiento");
     public static final Evento LlegadaCliente = new EventoLlegadaCliente("Llegada Cliente");
     public static final Evento RegresoCliente = new EventoRegresoCliente("Regreso Cliente");
     

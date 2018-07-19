@@ -11,29 +11,23 @@ import objects.Cliente;
 import objects.Servidor;
 import eventos.*;
 import objects.ColaClientes;
-//import objects.Maquina;
 
 
-/**
- *
- * @author heftyn
- */
+
+
 public interface VectorEstadoUI {
     
     double getReloj();
     
     Evento getEvento();
     
-    LlegadaCliente getLlegadaCliente();
+    LlegadaCliente getLlegadaCliente();    
     
-    //InicioMantenimiento getInicioMantenimiento();
-    
-    //FinMantenimiento getFinMantenimiento();
     FinAtecion getFinAtencion();
-    Servidor getServidor();
-    ColaClientes getColaClientes();  
     
-    //List<Maquina> getMaquinasList();
+    Servidor getServidor();
+    
+    ColaClientes getColaClientes();     
     
     int getAcumuladoAtendidos();
     

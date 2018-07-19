@@ -18,12 +18,7 @@ import model.Configuracion;
 import objects.ColaClientes;
 import objects.Distribuciones;
 import objects.Servidor;
-//import objects.Maquina;
 
-/**
- *
- * @author heftyn
- */
 public class EventoInicial extends Evento
 {
 
@@ -45,8 +40,7 @@ public class EventoInicial extends Evento
         actual.setColaClientes(new ColaClientes(0));
         actual.setServidor(new Servidor(Servidor.Estado.LIBRE));
         actual.setFinAtencion(new FinAtecion());
-        //actual.setFinMantenimiento(new FinMantenimiento());
-        //actual.setMaquinas(getMaquinasList());
+        
         
         //Seteo de la proxima llegada
         LlegadaCliente proximaLlegada = new LlegadaCliente();

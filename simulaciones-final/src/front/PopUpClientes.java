@@ -10,10 +10,6 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import objects.Cliente;
 
-/**
- *
- * @author heftyn
- */
 public class PopUpClientes extends javax.swing.JFrame {
 
     private List<Cliente> clientes;

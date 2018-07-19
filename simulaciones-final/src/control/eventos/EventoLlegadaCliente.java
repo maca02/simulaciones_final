@@ -54,12 +54,7 @@ public class EventoLlegadaCliente extends Evento {
         double tAtencion = 0.0;
         double finAtencion = 0.0;
         
-        /**
-         * Si maquinasLibres es true, significa que encontro al menos una y esta siendo inscripto,
-         * sino se queda en false y tiene que ir a la cola
-         */
-        //boolean maquinasLibres = false;
-        
+                
         // Calcular proxima llegada alumno
         double rndProxLlegada = randomObject.nextDouble();
         double tEntreLlegada = Distribuciones.calcular_exponencial(
@@ -89,13 +84,9 @@ public class EventoLlegadaCliente extends Evento {
                     
                     actual.setFinAtencion(newFinAtencion);
                     servidor.setEstado(Servidor.Estado.OCUPADO);
-                    //m.setFinInscripcion(actual.getReloj() + tAtencion);
-                    //newCliente.setRegreso(Cliente.Regreso.NO);
+                    
                     newCliente.setEstado(Cliente.Estado.SIENDO_ATENDIDO);
-                    
-                    //newCliente.setMaquinaInscripcion(m.getId());
-                    
-                    //maquinasLibres = true;                   
+                                                      
                 }             
                 else 
                 {
@@ -103,7 +94,6 @@ public class EventoLlegadaCliente extends Evento {
                     actual.getColaClientes().agregarAlumnoCola();
                     double espe = 0.0;
                     newCliente.setTiempo_esperando(espe);
-                    //calculoTiempoEspera(actual,anterior);
                 }             
         } 
         else if (actual.getColaClientes().getColaClientes()>= 5)                
@@ -113,9 +103,7 @@ public class EventoLlegadaCliente extends Evento {
             
             actual.setAcumuladoClientesPerdidos(actual.getAcumuladoClientesPerdidos()+ 1);
             newCliente.setEstado(Cliente.Estado.ESPERANDO_ATENCION);
-            //actual.getColaClientes().agregarAlumnoCola();
-            //newCliente.setTiempo_esperando(Double.MAX_VALUE);
-            //calculoTiempoEspera(actual,anterior);
+            
             double espe = 0.0;
             for (Cliente cli: actual.getClientes()){
                 if(cli.equals(newCliente)){
@@ -128,19 +116,11 @@ public class EventoLlegadaCliente extends Evento {
             
             actual.getClientes().remove(newCliente);
             
-//            for (Cliente cli: actual.getClientes()){
-//                if(cli.equals(newCliente)){
-//                    actual.getClientes().remove(cli);
-//                    actual.getColaClientes().setCantidad(actual.getColaClientes().getColaClientes() - 1);
-//                }
-//            }
         }
         else
         {
             newCliente.setEstado(Cliente.Estado.ESPERANDO_ATENCION);
             actual.getColaClientes().agregarAlumnoCola();
-            //newCliente.setTiempo_esperando(Double.MAX_VALUE);
-            //calculoTiempoEspera(actual,anterior);
             double espe = 0.0;
             for (Cliente cli: actual.getClientes()){
                 if(cli.equals(newCliente)){
@@ -162,7 +142,6 @@ public class EventoLlegadaCliente extends Evento {
     public void calculoTiempoEspera(Cliente cli , VectorEstado actual, VectorEstado anterior){
         double tiempoEspera = 0.0;
         double espe = 0.0;
-        //for(Cliente cli: actual.getClientes()){
             if((cli.getEstado().equals(Cliente.Estado.ESPERANDO_ATENCION)) && (cli.getRegreso().equals(Cliente.Regreso.NO))){
                 tiempoEspera = cli.getTiempo_esperando()+(actual.getReloj()- anterior.getReloj());
                 cli.setTiempo_esperando(tiempoEspera);
@@ -182,13 +161,10 @@ public class EventoLlegadaCliente extends Evento {
                 
                 if (cli.getTiempo_esperando() >= 20.0){
                     actual.setAcumuladoClientesQueLleganYSeVan(actual.getAcumuladoClientesQueLleganYSeVan() + 1);
-                    //List<Cliente> nuevaLista= actual.getClientes().remove(cli);
-                    //actual.setClientes(); //Funcionara???
-                    //List<Cliente> clientesActuales = clonarClientes(anterior.getClientes());
+                    
                     Cliente clienteQueEsperoDemasiado = cli; 
                     actual.getClientes().remove(clienteQueEsperoDemasiado); //Si dios quiere nadie mas lo referenciaba jaja
-                    //clienteQueEsperoDemasiado = null;
-                    //actual.setClientes(clientesActuales);
+                   
                 }
         }
             else{
