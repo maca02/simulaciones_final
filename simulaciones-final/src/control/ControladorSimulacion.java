@@ -53,17 +53,33 @@ public class ControladorSimulacion
         int iteracionActual = 0;
         int iteracionesMostrando = 0;
         inicializar();
-        double minutosASimular = new Double(Configuracion.getConfiguracionPorDefecto().getMinutosASimular());
+        double minutosASimular = new Double(Configuracion.getConfiguracion().getMinutosASimular());
         do
         {
             //Mover vector "actual" a "anterior"
+
             rotacionVector();
+            
             Evento nuevoEvento = determinarProximoEvento();
+            
+            
             //Actualizar reloj a la hora de este evento.
             actual.setReloj(nuevoEvento.getHoraEvento());
+           
             //Setear este evento dentro del vector actual y llamar al metodo polimorfico:
+             
             actual.setEvento(nuevoEvento);
+//           for (Cliente cli:actual.getClientes()){
+//                if ((cli.getEstado().equals(Cliente.Estado.ESPERANDO_ATENCION)) && (cli.getRegreso().equals(Cliente.Regreso.SI))){
+//                    if (nuevoEvento.getHoraEvento() - actual.getReloj() > 6){
+//                        actual.getClientes().remove(cli);
+//                        actual.getColaClientes().setCantidad(actual.getColaClientes().getColaClientes() - 1);
+//                        actual.getColaClientes().setCantidad(actual.getColaClientes().getColaClientes() - 1);
+//                    }
+//                }
+//            }
             actual.getEvento().actualizarEstadoVector();
+            
             
             //Ademas de la validacion general, tmb se agrega cuando es la ultima fila
             if (seMuestra(iteracionesMostrando) || 
@@ -75,7 +91,7 @@ public class ControladorSimulacion
             }
             iteracionActual++;
             
-        }while (iteracionActual < 10 && actual.getReloj() < minutosASimular);
+        }while (iteracionActual < 1000000 && actual.getReloj() < minutosASimular);
         //Actualizar Vista
         vistaAplicacion.setearModelo(modelo);
         //Calculo de los estadisticos
@@ -116,7 +132,7 @@ public class ControladorSimulacion
             //Guardar en la lista a devolver
             guardarVectorParaVista();
         }
-        anterior = actual;
+        actual = actual;
     }
 
     private Evento determinarProximoEvento() {
@@ -163,12 +179,12 @@ public class ControladorSimulacion
         boolean seMuestra = false;
         if (actual != null)
         {
-            seMuestra = actual.getReloj() >= Configuracion.getConfiguracionPorDefecto().getMinutoDesde();
+            seMuestra = actual.getReloj() >= Configuracion.getConfiguracion().getMinutoDesde();
             
         }
         if (seMuestra)
         {
-            seMuestra = seMuestra && iteracionActual <= Configuracion.getConfiguracionPorDefecto().getIteracionesAMostrar();
+            seMuestra = seMuestra && iteracionActual <= Configuracion.getConfiguracion().getIteracionesAMostrar();
         }
         return seMuestra;
     }

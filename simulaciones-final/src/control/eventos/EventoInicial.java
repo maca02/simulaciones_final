@@ -52,7 +52,7 @@ public class EventoInicial extends Evento
         LlegadaCliente proximaLlegada = new LlegadaCliente();
         proximaLlegada.setRnd(new Random().nextDouble());
         double tiempoEntreLlegadas = Distribuciones.calcular_exponencial(
-                Configuracion.getConfiguracionPorDefecto().getMediaLlegadaClientes(),
+                Configuracion.getConfiguracion().getMediaLlegadaClientes(),
                 proximaLlegada.getRnd());
         proximaLlegada.setTiempo_entre_llegadas(tiempoEntreLlegadas);
         proximaLlegada.setProx_llegada(actual.getReloj() + tiempoEntreLlegadas);

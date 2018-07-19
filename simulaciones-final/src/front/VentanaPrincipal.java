@@ -1,3 +1,4 @@
+
 package front;
 
 import control.ControladorSimulacion;
@@ -52,7 +53,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         txt_clientes_atendidos = new javax.swing.JTextField();
@@ -90,9 +90,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setText("Ejercicio E: Inscripción Exámenes");
+        setTitle("FINAL DE SIMULACIONES");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("TOLOZA, Macarena Rocio");
@@ -160,20 +158,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(42, 42, 42)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(254, 254, 254))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -192,7 +185,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel4.setText("Tiempo a simular: (en minutos)");
 
         txtMinutosASimular.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        txtMinutosASimular.setEditable(false);
         txtMinutosASimular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMinutosASimularActionPerformed(evt);
@@ -384,9 +376,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addContainerGap(82, Short.MAX_VALUE))
         );
 
-        jPanel8.getAccessibleContext().setAccessibleName("Demora Atencion");
-        jPanel5.getAccessibleContext().setAccessibleName("Regreso Cliente");
-
         jTabbedPane1.addTab("Configuracion", jPanel3);
 
         jScrollPane3.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -485,7 +474,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -606,104 +594,104 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     {
         
            
-//        try
-//        {
-//            if (Double.isNaN(Double.parseDouble(txtTiempoAtencionDesde.getText())) ||
-//                    Double.parseDouble(txtTiempoAtencionDesde.getText()) < 0)
-//            {
-//                throw new InputException("Tiempo inscripcion desde invalido");
-//            }
-//        }
-//        catch (NumberFormatException nfe)
-//        {
-//            throw new InputException("Tiempo inscripcion desde invalido");
-//        }
-//        Double tiempoInscripcionDesde = Double.parseDouble(txtTiempoAtencionDesde.getText());
-//        
-//        
-//        try
-//        {
-//            if (Double.isNaN(Double.parseDouble(txtTiempoAtencionHasta.getText())) ||
-//                    Double.parseDouble(txtTiempoAtencionHasta.getText()) < 0)
-//            {
-//                throw new InputException("Tiempo inscripcion hasta invalido");
-//            }
-//        }
-//        catch (NumberFormatException nfe)
-//        {
-//            throw new InputException("Tiempo inscripcion hasta invalido");
-//        }
-//        Double tiempoInscripcionHasta = Double.parseDouble(txtTiempoAtencionHasta.getText());
-//        
-//        if (tiempoInscripcionHasta <= tiempoInscripcionDesde)
-//        {
-//            throw new InputException("Tiempo inscripcion el desde debe ser menor al hasta");
-//        }
-//        
-//        
-//        try
-//        {
-//            if (Double.isNaN(Double.parseDouble(txtLlegadaClienteMedia.getText())) ||
-//                    Double.parseDouble(txtLlegadaClienteMedia.getText()) < 0)
-//            {
-//                throw new InputException("Media llegada alumnos invalido");
-//            }
-//        }
-//        catch (NumberFormatException nfe)
-//        {
-//            throw new InputException("Media llegada alumnos invalido");
-//        }
-//        Double mediaLlegadaAlumnos = Double.parseDouble(txtLlegadaClienteMedia.getText());
-//        
-//      
-//      
-//        try
-//        {
-//            if (Integer.parseInt(txtMinutosASimular.getText()) < 0)
-//            {
-//                throw new InputException("Minutos a sumular invalidos");
-//            }
-//        }
-//        catch (NumberFormatException nfe)
-//        {
-//            throw new InputException("Minutos a sumular invalidos");
-//        }
-//        int minutosASimular = Integer.parseInt(txtMinutosASimular.getText());
-//        
-//        try
-//        {
-//            if (Integer.parseInt(txtMinutoDesde.getText()) < 0)
-//            {
-//                throw new InputException("Minuto desde invalido");
-//            }
-//        }
-//        catch (NumberFormatException nfe)
-//        {
-//            throw new InputException("Minuto desde invalido");
-//        }
-//        int minutoDesde = Integer.parseInt(txtMinutoDesde.getText());
-//        
-//        try
-//        {
-//            if (Integer.parseInt(txtIteracionesAMostrar.getText()) < 0)
-//            {
-//                throw new InputException("Iteraciones a mostrar invalidos");
-//            }
-//        }
-//        catch (NumberFormatException nfe)
-//        {
-//            throw new InputException("Iteraciones a mostrar invalidos");
-//        }
-//        int iteracionesAMostrar = Integer.parseInt(txtIteracionesAMostrar.getText());
-//       
-        int iteracionesAMostrar = Integer.parseInt(txtIteracionesAMostrar.getText());
-        int minutosASimular = Integer.parseInt(txtMinutosASimular.getText());
-        int minutoDesde = Integer.parseInt(txtMinutoDesde.getText());
-        Double mediaLlegadaAlumnos = Double.parseDouble(txtLlegadaClienteMedia.getText());
-        Double tiempoInscripcionHasta = Double.parseDouble(txtTiempoAtencionHasta.getText());
+        try
+        {
+            if (Double.isNaN(Double.parseDouble(txtTiempoAtencionDesde.getText())) ||
+                    Double.parseDouble(txtTiempoAtencionDesde.getText()) < 0)
+            {
+                throw new InputException("Tiempo inscripcion desde invalido");
+            }
+        }
+        catch (NumberFormatException nfe)
+        {
+            throw new InputException("Tiempo inscripcion desde invalido");
+        }
         Double tiempoInscripcionDesde = Double.parseDouble(txtTiempoAtencionDesde.getText());
         
-        Configuracion conf = Configuracion.getConfiguracionPorDefecto();
+        
+        try
+        {
+            if (Double.isNaN(Double.parseDouble(txtTiempoAtencionHasta.getText())) ||
+                    Double.parseDouble(txtTiempoAtencionHasta.getText()) < 0)
+            {
+                throw new InputException("Tiempo inscripcion hasta invalido");
+            }
+        }
+        catch (NumberFormatException nfe)
+        {
+            throw new InputException("Tiempo inscripcion hasta invalido");
+        }
+        Double tiempoInscripcionHasta = Double.parseDouble(txtTiempoAtencionHasta.getText());
+        
+        if (tiempoInscripcionHasta <= tiempoInscripcionDesde)
+        {
+            throw new InputException("Tiempo inscripcion el desde debe ser menor al hasta");
+        }
+        
+        
+        try
+        {
+            if (Double.isNaN(Double.parseDouble(txtLlegadaClienteMedia.getText())) ||
+                    Double.parseDouble(txtLlegadaClienteMedia.getText()) < 0)
+            {
+                throw new InputException("Media llegada alumnos invalido");
+            }
+        }
+        catch (NumberFormatException nfe)
+        {
+            throw new InputException("Media llegada alumnos invalido");
+        }
+        Double mediaLlegadaAlumnos = Double.parseDouble(txtLlegadaClienteMedia.getText());
+        
+      
+      
+        try
+        {
+            if (Integer.parseInt(txtMinutosASimular.getText()) < 0)
+            {
+                throw new InputException("Minutos a sumular invalidos");
+            }
+        }
+        catch (NumberFormatException nfe)
+        {
+            throw new InputException("Minutos a sumular invalidos");
+        }
+        int minutosASimular = Integer.parseInt(txtMinutosASimular.getText());
+        
+        try
+        {
+            if (Integer.parseInt(txtMinutoDesde.getText()) < 0)
+            {
+                throw new InputException("Minuto desde invalido");
+            }
+        }
+        catch (NumberFormatException nfe)
+        {
+            throw new InputException("Minuto desde invalido");
+        }
+        int minutoDesde = Integer.parseInt(txtMinutoDesde.getText());
+        
+        try
+        {
+            if (Integer.parseInt(txtIteracionesAMostrar.getText()) < 0)
+            {
+                throw new InputException("Iteraciones a mostrar invalidos");
+            }
+        }
+        catch (NumberFormatException nfe)
+        {
+            throw new InputException("Iteraciones a mostrar invalidos");
+        }
+        int iteracionesAMostrar = Integer.parseInt(txtIteracionesAMostrar.getText());
+//       
+//        int iteracionesAMostrar = Integer.parseInt(txtIteracionesAMostrar.getText());
+//        int minutosASimular = Integer.parseInt(txtMinutosASimular.getText());
+//        int minutoDesde = Integer.parseInt(txtMinutoDesde.getText());
+//        Double mediaLlegadaAlumnos = Double.parseDouble(txtLlegadaClienteMedia.getText());
+//        Double tiempoInscripcionHasta = Double.parseDouble(txtTiempoAtencionHasta.getText());
+//        Double tiempoInscripcionDesde = Double.parseDouble(txtTiempoAtencionDesde.getText());
+        
+        Configuracion conf = Configuracion.getConfiguracion();
         conf.setIteracionesAMostrar(iteracionesAMostrar);
         conf.setMediaLlegadaClientes(mediaLlegadaAlumnos);
         conf.setMinutoDesde(minutoDesde);

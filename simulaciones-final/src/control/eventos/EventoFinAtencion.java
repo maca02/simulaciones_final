@@ -120,8 +120,8 @@ public class EventoFinAtencion extends Evento
                 
                 rndAtencion = randomObject.nextDouble();
                     tAtencion = Distribuciones.calcular_uniforme(
-                            Configuracion.getConfiguracionPorDefecto().getTiempoAtencionDesde(),
-                            Configuracion.getConfiguracionPorDefecto().getTiempoAtencionHasta(),
+                            Configuracion.getConfiguracion().getTiempoAtencionDesde(),
+                            Configuracion.getConfiguracion().getTiempoAtencionHasta(),
                             rndAtencion);
                     finAtencion = tAtencion + actual.getReloj();
                     
@@ -157,8 +157,8 @@ public class EventoFinAtencion extends Evento
                 }
                 rndAtencion = randomObject.nextDouble();
                     tAtencion = Distribuciones.calcular_uniforme(
-                            Configuracion.getConfiguracionPorDefecto().getTiempoAtencionDesde(),
-                            Configuracion.getConfiguracionPorDefecto().getTiempoAtencionHasta(),
+                            Configuracion.getConfiguracion().getTiempoAtencionDesde(),
+                            Configuracion.getConfiguracion().getTiempoAtencionHasta(),
                             rndAtencion);
                     finAtencion = tAtencion + actual.getReloj();
                     
@@ -207,8 +207,8 @@ public class EventoFinAtencion extends Evento
                 tiempoEspera = cliente.getTiempo_esperando()+(actual.getReloj()- anterior.getReloj());
                 cliente.setTiempo_esperando(tiempoEspera);
                 
-                if ((cliente.getTiempo_esperando() >= 6.0)){
-                    double minutosQueRegresa = 5.0;
+                if ((cliente.getTiempo_esperando() >= 20.0)){
+                    double minutosQueRegresa = 60.0;
                     cliente.setHora_regreso_sistema(actual.getReloj()+ minutosQueRegresa);
                     cliente.setTiempo_esperando(espe);
                     cliente.setEstado(Cliente.Estado.ESPERANDO_PARA_REGRESAR);                  
@@ -218,7 +218,7 @@ public class EventoFinAtencion extends Evento
             else if ((cliente.getEstado().equals(Cliente.Estado.ESPERANDO_ATENCION)) && (cliente.getRegreso().equals(Cliente.Regreso.SI))){
                 tiempoEspera = cliente.getTiempo_esperando()+(actual.getReloj()- anterior.getReloj());
                 cliente.setTiempo_esperando(tiempoEspera);
-                if (tiempoEspera >= 6.0){
+                if (tiempoEspera >= 20.0){
                     actual.setAcumuladoClientesQueLleganYSeVan(actual.getAcumuladoClientesQueLleganYSeVan() + 1);
                     //List<Cliente> nuevaLista= actual.getClientes().remove(cli);
                     //actual.setClientes(); //Funcionara???

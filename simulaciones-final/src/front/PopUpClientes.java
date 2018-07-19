@@ -48,7 +48,7 @@ public class PopUpClientes extends javax.swing.JFrame {
         scpAlumnos = new javax.swing.JScrollPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Alumnos");
+        setTitle("CLIENTES");
         setAlwaysOnTop(true);
         setType(java.awt.Window.Type.POPUP);
 

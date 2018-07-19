@@ -63,7 +63,7 @@ public class EventoLlegadaCliente extends Evento {
         // Calcular proxima llegada alumno
         double rndProxLlegada = randomObject.nextDouble();
         double tEntreLlegada = Distribuciones.calcular_exponencial(
-                Configuracion.getConfiguracionPorDefecto().getMediaLlegadaClientes(),
+                Configuracion.getConfiguracion().getMediaLlegadaClientes(),
                 rndProxLlegada);
         double proxLlegada = tEntreLlegada + actual.getReloj();
         
@@ -78,8 +78,8 @@ public class EventoLlegadaCliente extends Evento {
                     // Calcula el fin inscripcion y actualiza el estado del alumno y de la maquina correspondiente
                     rndAtencion = randomObject.nextDouble();
                     tAtencion = Distribuciones.calcular_uniforme(
-                            Configuracion.getConfiguracionPorDefecto().getTiempoAtencionDesde(),
-                            Configuracion.getConfiguracionPorDefecto().getTiempoAtencionHasta(),
+                            Configuracion.getConfiguracion().getTiempoAtencionDesde(),
+                            Configuracion.getConfiguracion().getTiempoAtencionHasta(),
                             rndAtencion);
                     finAtencion = tAtencion + actual.getReloj();
                     
@@ -106,7 +106,7 @@ public class EventoLlegadaCliente extends Evento {
                     //calculoTiempoEspera(actual,anterior);
                 }             
         } 
-        else if (actual.getColaClientes().getColaClientes()>= 3)                
+        else if (actual.getColaClientes().getColaClientes()>= 5)                
         {
             //CLIENTE SE DESTRUYE
             // Logica para cuando la cola es mayor a 4
@@ -167,8 +167,8 @@ public class EventoLlegadaCliente extends Evento {
                 tiempoEspera = cli.getTiempo_esperando()+(actual.getReloj()- anterior.getReloj());
                 cli.setTiempo_esperando(tiempoEspera);
                 
-                if (cli.getTiempo_esperando() >= 6.0){
-                    double minutosQueRegresa = 5.0;
+                if (cli.getTiempo_esperando() >= 20.0){
+                    double minutosQueRegresa = 60.0;
                     cli.setHora_regreso_sistema(actual.getReloj()+ minutosQueRegresa);
                     cli.setTiempo_esperando(espe);
                     cli.setEstado(Cliente.Estado.ESPERANDO_PARA_REGRESAR);
@@ -180,7 +180,7 @@ public class EventoLlegadaCliente extends Evento {
                 tiempoEspera = cli.getTiempo_esperando()+(actual.getReloj()- anterior.getReloj());
                 cli.setTiempo_esperando(tiempoEspera);
                 
-                if (cli.getTiempo_esperando() >= 6.0){
+                if (cli.getTiempo_esperando() >= 20.0){
                     actual.setAcumuladoClientesQueLleganYSeVan(actual.getAcumuladoClientesQueLleganYSeVan() + 1);
                     //List<Cliente> nuevaLista= actual.getClientes().remove(cli);
                     //actual.setClientes(); //Funcionara???

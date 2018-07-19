@@ -80,6 +80,16 @@ public class Configuracion {
     public void setMediaLlegadaClientes(double mediaLlegadaClientes) {
         this.mediaLlegadaClientes = mediaLlegadaClientes;
     }
+    
+     public static Configuracion getConfiguracion()
+    {
+        if (instancia == null)
+        {
+            instancia = new Configuracion();
+        }
+        return instancia;
+    }
+     
     public static Configuracion getConfiguracionPorDefecto() 
     {
         instancia = new Configuracion();

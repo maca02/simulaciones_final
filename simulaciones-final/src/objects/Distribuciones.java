@@ -21,5 +21,6 @@ public class Distribuciones {
     public static double calcular_exponencial(double media, double rnd) {
         return (media*-1) * Math.log(1-rnd);
     }
+        
    
 }
