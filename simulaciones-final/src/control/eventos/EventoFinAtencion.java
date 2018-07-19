@@ -102,24 +102,22 @@ public class EventoFinAtencion extends Evento
             // PASO 3 ?????
             if(clientesQueVolvieron.size() != 0){
                 //PASO 4
-                Collections.sort(clientesQueVolvieron, (Cliente c1, Cliente c2) -> new Double(c1.getHora_regreso_sistema()).compareTo(new Double(c2.getHora_regreso_sistema())));
-                
-            }
-            else{
-                //PASO 6
-                Collections.sort(actual.getClientes(), (Cliente c1, Cliente c2) -> new Double(c2.getTiempo_esperando()).compareTo(new Double(c1.getTiempo_esperando())));
-                Cliente elegido = actual.getClientes().get(0);
-                elegido.setEstado(Cliente.Estado.SIENDO_ATENDIDO);
-                
-                //elegido.setTiempo_esperando(Double.MAX_VALUE);
+                //Collections.sort(clientesQueVolvieron, (Cliente c1, Cliente c2) -> new Double(c1.getHora_regreso_sistema()).compareTo(new Double(c2.getHora_regreso_sistema())));
+                Cliente cli = clientesQueVolvieron.get(0);
+                cli.setEstado(Cliente.Estado.SIENDO_ATENDIDO);
                 double espe = 0.0;
-                for (Cliente cli: actual.getClientes()){
-                    if(cli.equals(elegido)){
-                        elegido.setTiempo_esperando(espe);
+                //cli.setTiempo_esperando(espe);
+                cli.setHora_regreso_sistema(espe);
+                
+                for (Cliente cliente: actual.getClientes()){
+                    if(cliente.equals(cli)){
+                        cli.setTiempo_esperando(espe);
                     }
                     else{
-                        calculoTiempoEspera(cli,actual, anterior);
+                        calculoTiempoEspera(cliente,actual, anterior);
                     }
+                }
+                
                 rndAtencion = randomObject.nextDouble();
                     tAtencion = Distribuciones.calcular_uniforme(
                             Configuracion.getConfiguracionPorDefecto().getTiempoAtencionDesde(),
@@ -131,12 +129,53 @@ public class EventoFinAtencion extends Evento
                 newFinAtencion.settAtencion(tAtencion);
                 newFinAtencion.setFinAtencion(finAtencion);    
                 actual.setFinAtencion(newFinAtencion);
-
+            }
+            else{
+                //PASO 6
+                List<Cliente> clientesEsperandoAtencion = new ArrayList<>();
+                for (Cliente cli : actual.getClientes()){
+                    if(cli.getEstado().equals(Cliente.Estado.ESPERANDO_ATENCION)){
+                    clientesEsperandoAtencion.add(cli);
+                    }
+                }
+                if (clientesEsperandoAtencion.size() != 0){
+                    
+                
+               Collections.sort(clientesEsperandoAtencion, (Cliente c1, Cliente c2) -> new Double(c2.getTiempo_esperando()).compareTo(new Double(c1.getTiempo_esperando())));
+               Cliente elegido = clientesEsperandoAtencion.get(0);
+               elegido.setEstado(Cliente.Estado.SIENDO_ATENDIDO);
+                
+                //elegido.setTiempo_esperando(Double.MAX_VALUE);
+                double espe = 0.0;
+                for (Cliente cli: clientesEsperandoAtencion){
+                    if(cli.equals(elegido)){
+                        elegido.setTiempo_esperando(espe);
+                    }
+                    else{
+                        calculoTiempoEspera(cli,actual, anterior);
+                    }
+                }
+                rndAtencion = randomObject.nextDouble();
+                    tAtencion = Distribuciones.calcular_uniforme(
+                            Configuracion.getConfiguracionPorDefecto().getTiempoAtencionDesde(),
+                            Configuracion.getConfiguracionPorDefecto().getTiempoAtencionHasta(),
+                            rndAtencion);
+                    finAtencion = tAtencion + actual.getReloj();
+                    
+                newFinAtencion.setRnd(rndAtencion);
+                newFinAtencion.settAtencion(tAtencion);
+                newFinAtencion.setFinAtencion(finAtencion);    
+                actual.setFinAtencion(newFinAtencion);
+                
                 
                  
             }
-            
-        }
+                else {
+                    actual.getServidor().setEstado(Servidor.Estado.LIBRE);
+                    actual.getFinAtencion().setFinAtencion(Double.MAX_VALUE);
+                }
+        }    
+        
         }
         else{
             //PASO 7
@@ -160,35 +199,38 @@ public class EventoFinAtencion extends Evento
         throw new NullPointerException ( "No habia cliente siendo atendido");
     }
     
-    public void calculoTiempoEspera(Cliente cli , VectorEstado actual, VectorEstado anterior){
+    public void calculoTiempoEspera(Cliente cliente , VectorEstado actual, VectorEstado anterior){
         double tiempoEspera = 0.0;
+         double espe = 0.0;
         //for(Cliente cli: actual.getClientes()){
-            if((cli.getEstado().equals(Cliente.Estado.ESPERANDO_ATENCION)) && (cli.getRegreso().equals(Cliente.Regreso.NO))){
-                tiempoEspera = cli.getTiempo_esperando()+(actual.getReloj()- anterior.getReloj());
-                cli.setTiempo_esperando(tiempoEspera);
+            if((cliente.getEstado().equals(Cliente.Estado.ESPERANDO_ATENCION)) && (cliente.getRegreso().equals(Cliente.Regreso.NO))){
+                tiempoEspera = cliente.getTiempo_esperando()+(actual.getReloj()- anterior.getReloj());
+                cliente.setTiempo_esperando(tiempoEspera);
                 
-                if (cli.getTiempo_esperando() >= 20.0){
-                    double minutosQueRegresa = 60.0;
-                    cli.setHora_regreso_sistema(actual.getReloj()+ minutosQueRegresa);
-                    cli.setEstado(Cliente.Estado.ESPERANDO_PARA_REGRESAR);                  
-                    
+                if ((cliente.getTiempo_esperando() >= 6.0)){
+                    double minutosQueRegresa = 5.0;
+                    cliente.setHora_regreso_sistema(actual.getReloj()+ minutosQueRegresa);
+                    cliente.setTiempo_esperando(espe);
+                    cliente.setEstado(Cliente.Estado.ESPERANDO_PARA_REGRESAR);                  
+                    actual.getColaClientes().setCantidad(actual.getColaClientes().getColaClientes() - 1);
                 }                    
             }
-            else if ((cli.getEstado().equals(Cliente.Estado.ESPERANDO_ATENCION)) && (cli.getRegreso().equals(Cliente.Regreso.SI))){
-                tiempoEspera = cli.getTiempo_esperando()+(actual.getReloj()- anterior.getReloj());
-                if (tiempoEspera >= 20){
+            else if ((cliente.getEstado().equals(Cliente.Estado.ESPERANDO_ATENCION)) && (cliente.getRegreso().equals(Cliente.Regreso.SI))){
+                tiempoEspera = cliente.getTiempo_esperando()+(actual.getReloj()- anterior.getReloj());
+                cliente.setTiempo_esperando(tiempoEspera);
+                if (tiempoEspera >= 6.0){
                     actual.setAcumuladoClientesQueLleganYSeVan(actual.getAcumuladoClientesQueLleganYSeVan() + 1);
                     //List<Cliente> nuevaLista= actual.getClientes().remove(cli);
                     //actual.setClientes(); //Funcionara???
-                    List<Cliente> clientesActuales = clonarClientes(anterior.getClientes());
-                    Cliente clienteQueEsperoDemasiado = cli; 
-                    clientesActuales.remove(clienteQueEsperoDemasiado); //Si dios quiere nadie mas lo referenciaba jaja
-                    clienteQueEsperoDemasiado = null;
-                    actual.setClientes(clientesActuales);
+                    //List<Cliente> clientesActuales = clonarClientes(anterior.getClientes());
+                    Cliente clienteQueEsperoDemasiado = cliente; 
+                    actual.getClientes().remove(clienteQueEsperoDemasiado); //Si dios quiere nadie mas lo referenciaba jaja
+                    //clienteQueEsperoDemasiado = null;
+                    //actual.setClientes(clientesActuales);
                 }
         }
             else{
-                cli.setTiempo_esperando(cli.getTiempo_esperando());                        
+                cliente.setTiempo_esperando(cliente.getTiempo_esperando());                        
             }
         
     }

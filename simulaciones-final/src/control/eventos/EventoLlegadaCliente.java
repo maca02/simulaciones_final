@@ -106,17 +106,33 @@ public class EventoLlegadaCliente extends Evento {
                     //calculoTiempoEspera(actual,anterior);
                 }             
         } 
-        else if (actual.getColaClientes().getColaClientes()>= 2)                
+        else if (actual.getColaClientes().getColaClientes()>= 3)                
         {
             //CLIENTE SE DESTRUYE
             // Logica para cuando la cola es mayor a 4
             
             actual.setAcumuladoClientesPerdidos(actual.getAcumuladoClientesPerdidos()+ 1);
+            newCliente.setEstado(Cliente.Estado.ESPERANDO_ATENCION);
+            //actual.getColaClientes().agregarAlumnoCola();
+            //newCliente.setTiempo_esperando(Double.MAX_VALUE);
             //calculoTiempoEspera(actual,anterior);
+            double espe = 0.0;
+            for (Cliente cli: actual.getClientes()){
+                if(cli.equals(newCliente)){
+                    newCliente.setTiempo_esperando(espe);
+                }
+                else{
+                    calculoTiempoEspera(cli,actual, anterior);
+                }
+            }
+            
+            actual.getClientes().remove(newCliente);
+            
 //            for (Cliente cli: actual.getClientes()){
-//                
-//                    calculoTiempoEspera(cli,actual, anterior);
-//                
+//                if(cli.equals(newCliente)){
+//                    actual.getClientes().remove(cli);
+//                    actual.getColaClientes().setCantidad(actual.getColaClientes().getColaClientes() - 1);
+//                }
 //            }
         }
         else
@@ -145,29 +161,34 @@ public class EventoLlegadaCliente extends Evento {
     
     public void calculoTiempoEspera(Cliente cli , VectorEstado actual, VectorEstado anterior){
         double tiempoEspera = 0.0;
+        double espe = 0.0;
         //for(Cliente cli: actual.getClientes()){
             if((cli.getEstado().equals(Cliente.Estado.ESPERANDO_ATENCION)) && (cli.getRegreso().equals(Cliente.Regreso.NO))){
                 tiempoEspera = cli.getTiempo_esperando()+(actual.getReloj()- anterior.getReloj());
                 cli.setTiempo_esperando(tiempoEspera);
                 
-                if (cli.getTiempo_esperando() >= 20.0){
-                    double minutosQueRegresa = 60.0;
+                if (cli.getTiempo_esperando() >= 6.0){
+                    double minutosQueRegresa = 5.0;
                     cli.setHora_regreso_sistema(actual.getReloj()+ minutosQueRegresa);
-                    cli.setEstado(Cliente.Estado.ESPERANDO_PARA_REGRESAR);                  
+                    cli.setTiempo_esperando(espe);
+                    cli.setEstado(Cliente.Estado.ESPERANDO_PARA_REGRESAR);
+                    actual.getColaClientes().setCantidad(actual.getColaClientes().getColaClientes() - 1);
                     
                 }                    
             }
             else if ((cli.getEstado().equals(Cliente.Estado.ESPERANDO_ATENCION)) && (cli.getRegreso().equals(Cliente.Regreso.SI))){
                 tiempoEspera = cli.getTiempo_esperando()+(actual.getReloj()- anterior.getReloj());
-                if (tiempoEspera >= 20){
+                cli.setTiempo_esperando(tiempoEspera);
+                
+                if (cli.getTiempo_esperando() >= 6.0){
                     actual.setAcumuladoClientesQueLleganYSeVan(actual.getAcumuladoClientesQueLleganYSeVan() + 1);
                     //List<Cliente> nuevaLista= actual.getClientes().remove(cli);
                     //actual.setClientes(); //Funcionara???
-                    List<Cliente> clientesActuales = clonarClientes(anterior.getClientes());
+                    //List<Cliente> clientesActuales = clonarClientes(anterior.getClientes());
                     Cliente clienteQueEsperoDemasiado = cli; 
-                    clientesActuales.remove(clienteQueEsperoDemasiado); //Si dios quiere nadie mas lo referenciaba jaja
-                    clienteQueEsperoDemasiado = null;
-                    actual.setClientes(clientesActuales);
+                    actual.getClientes().remove(clienteQueEsperoDemasiado); //Si dios quiere nadie mas lo referenciaba jaja
+                    //clienteQueEsperoDemasiado = null;
+                    //actual.setClientes(clientesActuales);
                 }
         }
             else{

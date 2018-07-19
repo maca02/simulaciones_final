@@ -83,6 +83,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         txtTiempoAtencionHasta = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         jButton1 = new javax.swing.JButton();
 
@@ -188,7 +191,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jLabel4.setText("Tiempo a simular: (en minutos)");
 
-        txtMinutosASimular.setEditable(false);
         txtMinutosASimular.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         txtMinutosASimular.setEditable(false);
         txtMinutosASimular.addActionListener(new java.awt.event.ActionListener() {
@@ -199,11 +201,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jLabel5.setText("Minuto para mostrar vector desde: ");
 
-        txtMinutoDesde.setEditable(false);
-
         jLabel6.setText("Cantidad de iteraciones a mostrar: ");
-
-        txtIteracionesAMostrar.setEditable(false);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -238,13 +236,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Llegada Alumno"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Llegada Cliente"));
 
         jLabel7.setText("Distribución exponencial");
 
         jLabel8.setText("Media:");
-
-        txtLlegadaClienteMedia.setEditable(false);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -272,7 +268,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder("Demora Inscripcion"));
+        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder("Demora Atencion"));
 
         jLabel19.setText("Distribución Uniforme");
 
@@ -280,10 +276,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jLabel21.setText("Hasta:");
 
-        txtTiempoAtencionDesde.setEditable(false);
         txtTiempoAtencionDesde.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
-        txtTiempoAtencionHasta.setEditable(false);
+        txtTiempoAtencionHasta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTiempoAtencionHastaActionPerformed(evt);
+            }
+        });
 
         jLabel22.setText("minutos");
 
@@ -331,6 +330,31 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addContainerGap(44, Short.MAX_VALUE))
         );
 
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Regreso Cliente"));
+
+        jLabel1.setText("Minutos");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -342,7 +366,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(451, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -353,9 +379,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(82, Short.MAX_VALUE))
         );
+
+        jPanel8.getAccessibleContext().setAccessibleName("Demora Atencion");
+        jPanel5.getAccessibleContext().setAccessibleName("Regreso Cliente");
 
         jTabbedPane1.addTab("Configuracion", jPanel3);
 
@@ -445,10 +475,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_clientes_atendidosActionPerformed
 
+    private void txtTiempoAtencionHastaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTiempoAtencionHastaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTiempoAtencionHastaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_simular;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
@@ -468,10 +503,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField txtIteracionesAMostrar;
     private javax.swing.JTextField txtLlegadaClienteMedia;
     private javax.swing.JTextField txtMinutoDesde;
