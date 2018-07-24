@@ -3,17 +3,17 @@ package objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Servidor implements Cloneable{
-  
+public class Servidor implements Cloneable {
+
     private Estado estado;
 
     public boolean estaEsperandoMaquinaLibre() {
         return this.estado.equals(Estado.LIBRE);
     }
-    
-    public enum Estado{
+
+    public enum Estado {
         LIBRE,
-        OCUPADO,        
+        OCUPADO,
     };
 
     public Servidor(Estado estado) {
@@ -26,11 +26,10 @@ public class Servidor implements Cloneable{
 
     public void setEstado(Estado estado) {
         this.estado = estado;
-    }    
-    
+    }
+
     @Override
-    public Servidor clone() 
-    {
+    public Servidor clone() {
         try {
             Servidor clon = (Servidor) super.clone();
             clon.estado = this.estado;

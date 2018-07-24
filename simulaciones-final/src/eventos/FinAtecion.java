@@ -3,12 +3,11 @@ package eventos;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class FinAtecion implements Cloneable{
-    
+public class FinAtecion implements Cloneable {
+
     private double rnd;
     private double tAtencion;
     private double finAtencion;
-  
 
     public FinAtecion() {
         rnd = tAtencion = finAtencion = Double.MAX_VALUE;
@@ -35,7 +34,7 @@ public class FinAtecion implements Cloneable{
     public void settAtencion(double tAtencion) {
         this.tAtencion = tAtencion;
     }
-    
+
     public double getFinAtencion() {
         return finAtencion;
     }
@@ -43,10 +42,9 @@ public class FinAtecion implements Cloneable{
     public void setFinAtencion(double finAtencion) {
         this.finAtencion = finAtencion;
     }
-    
+
     @Override
-    public FinAtecion clone()
-    {
+    public FinAtecion clone() {
         try {
             FinAtecion clon = (FinAtecion) super.clone();
             clon.rnd = Double.MAX_VALUE;

@@ -19,19 +19,17 @@ import objects.ColaClientes;
 import objects.Distribuciones;
 import objects.Servidor;
 
-public class EventoInicial extends Evento
-{
+public class EventoInicial extends Evento {
 
     public EventoInicial(String nombre) {
         super(nombre);
     }
 
     @Override
-    public void actualizarEstadoVector() 
-    {
+    public void actualizarEstadoVector() {
         VectorEstado actual = ControladorSimulacion.getVectorActual();
         VectorEstado anterior = ControladorSimulacion.getVectorAnterior();
-        
+
         //DONDE SE DEFINE EL RELOJ DE INICIO????
         actual.setAcumuladoClientesPerdidos(0);
         actual.setAcumuladoClientesQueLleganYSeVan(0);
@@ -40,8 +38,7 @@ public class EventoInicial extends Evento
         actual.setColaClientes(new ColaClientes(0));
         actual.setServidor(new Servidor(Servidor.Estado.LIBRE));
         actual.setFinAtencion(new FinAtecion());
-        
-        
+
         //Seteo de la proxima llegada
         LlegadaCliente proximaLlegada = new LlegadaCliente();
         proximaLlegada.setRnd(new Random().nextDouble());
@@ -50,10 +47,8 @@ public class EventoInicial extends Evento
                 proximaLlegada.getRnd());
         proximaLlegada.setTiempo_entre_llegadas(tiempoEntreLlegadas);
         proximaLlegada.setProx_llegada(actual.getReloj() + tiempoEntreLlegadas);
-                
+
         actual.setLlegadaCliente(proximaLlegada);
     }
 
-   
-    
 }

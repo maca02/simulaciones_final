@@ -1,4 +1,3 @@
-
 package front;
 
 import control.ControladorSimulacion;
@@ -37,7 +36,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private VectorEstadoTableModel model;
     private JTable tabla;
     private PopUpClientes popUpClientes;
-    
+
     public VentanaPrincipal(ControladorSimulacion controlador) {
         this.controlador = controlador;
         popUpClientes = new PopUpClientes();
@@ -45,7 +44,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         crearTabla();
         setearModeloDeTextos();
         setear_defecto();
-        
+
     }
 
     @SuppressWarnings("unchecked")
@@ -57,12 +56,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanel9 = new javax.swing.JPanel();
         txt_clientes_atendidos = new javax.swing.JTextField();
         jLabel25 = new javax.swing.JLabel();
-        txt_clientes_que_volviero = new javax.swing.JTextField();
-        jLabel27 = new javax.swing.JLabel();
         txt_clientes_perdidos = new javax.swing.JTextField();
         jLabel29 = new javax.swing.JLabel();
+        txt_clientes_que_volviero = new javax.swing.JTextField();
+        jLabel27 = new javax.swing.JLabel();
         btn_simular = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel5 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -83,11 +85,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         txtTiempoAtencionHasta = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         jButton1 = new javax.swing.JButton();
+        btn_setear = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("FINAL DE SIMULACIONES");
@@ -106,10 +106,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jLabel25.setText("Cantidad de clientes Atendidos");
 
-        txt_clientes_que_volviero.setEditable(false);
-
-        jLabel27.setText("Cantidad de clientes que se fueron y volvieron");
-
         txt_clientes_perdidos.setEditable(false);
         txt_clientes_perdidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,7 +113,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jLabel29.setText("Cantidad de clientes perdidos");
+        jLabel29.setText("Cantidad de clientes perdidos por exceso de fila");
+
+        txt_clientes_que_volviero.setEditable(false);
+
+        jLabel27.setText("Cantidad de clientes perdidos por tardanza en el servicio");
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -128,14 +128,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel25)
                 .addGap(18, 18, 18)
                 .addComponent(txt_clientes_atendidos, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(77, 77, 77)
+                .addComponent(jLabel29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txt_clientes_perdidos, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel27)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txt_clientes_que_volviero, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel29)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txt_clientes_perdidos, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
@@ -145,10 +145,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_clientes_atendidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel25)
-                    .addComponent(jLabel27)
-                    .addComponent(txt_clientes_que_volviero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel29)
-                    .addComponent(txt_clientes_perdidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_clientes_perdidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_clientes_que_volviero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel27))
                 .addGap(60, 60, 60))
         );
 
@@ -179,6 +179,31 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 btn_simularActionPerformed(evt);
             }
         });
+
+        jTextArea1.setEditable(false);
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jTextArea1.setText("Llegan clientes a solicitar un servicio siguiendo una distribución exponencial con una media de 5 min entre llegadas.\nHay una sola cabina de atención a los clientes; el tiempo de atención de cada persona sigue una distribución uniforme entre 7.5 y 10.5  minutos.\nSi la persona lleva más de 20 minutos esperando a ser atendida, saldrá de la fila y regresará al cabo de una hora a intentarlo de nuevo. Además, las personas que se han \nretirado de la fila y han regresado, vuelven con una prioridad de atención, es decir, serán atendidas primero que aquellos clientes que lo intentan por primera vez. \nSi el cliente, después de regresar, vuelve a esperar 20 minutos a ser atendido, se retirará y no volverá. Además, si hay diez personas en espera, los clientes que llegan se \nretirarán inmediatamente.\n\na)\t¿Cuántos clientes atendidos en diez (10) horas?\nb)\t¿Cuántos se pierden por la tardanza en el servicio? (los que vuelven y se van de nuevo)\nc)\t¿Cuántos se pierden por exceso de fila?\n\n");
+        jScrollPane1.setViewportView(jTextArea1);
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(110, 110, 110)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1701, Short.MAX_VALUE)
+                .addGap(68, 68, 68))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE)
+                .addGap(39, 39, 39))
+        );
+
+        jTabbedPane1.addTab("Enunciado", jPanel5);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Configuracion inicial", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP));
 
@@ -322,31 +347,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addContainerGap(44, Short.MAX_VALUE))
         );
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Regreso Cliente"));
-
-        jLabel1.setText("Minutos");
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -358,10 +358,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(451, Short.MAX_VALUE))
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(702, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -371,8 +369,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(82, Short.MAX_VALUE))
         );
 
@@ -390,6 +387,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btn_setear.setText("Setear valores Por Defecto");
+        btn_setear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_setearActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -397,16 +401,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTabbedPane1)
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(11, 11, 11)
+                        .addComponent(btn_setear)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btn_simular)
-                        .addGap(263, 263, 263)))
+                        .addGap(13, 13, 13)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -414,12 +420,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
+                .addComponent(jTabbedPane1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(btn_simular))
+                    .addComponent(btn_simular)
+                    .addComponent(btn_setear))
                 .addContainerGap())
         );
 
@@ -427,24 +434,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_simularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_simularActionPerformed
-        try
-        {
+        try {
             actualizarConfiguracion();
-        }
-        catch (InputException ie)
-        {
+        } catch (InputException ie) {
             JOptionPane.showMessageDialog(null, ie.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if(validarMinutoDesdeMayorACantMinutosASimular()) {
-            JOptionPane.showMessageDialog(null,"El minuto desde no puede ser mayor a la cantidad de minutos a simular.", "Error", JOptionPane.INFORMATION_MESSAGE);
-        } else if (Integer.parseInt(txtIteracionesAMostrar.getText()) <= 0){
-            JOptionPane.showMessageDialog(null,"Cantidad de iteraciones no puede ser 0.", "Error", JOptionPane.INFORMATION_MESSAGE);
+        if (validarMinutoDesdeMayorACantMinutosASimular()) {
+            JOptionPane.showMessageDialog(null, "El minuto desde no puede ser mayor a la cantidad de minutos a simular.", "Error", JOptionPane.INFORMATION_MESSAGE);
+        } else if (Integer.parseInt(txtIteracionesAMostrar.getText()) <= 0) {
+            JOptionPane.showMessageDialog(null, "Cantidad de iteraciones no puede ser 0.", "Error", JOptionPane.INFORMATION_MESSAGE);
         } else {
             model.setDatos(new ArrayList<>());
             controlador.simular();
             calcular_estadisticas();
-            SwingUtilities.invokeLater( () -> { jTabbedPane1.setSelectedIndex(1);});
+            SwingUtilities.invokeLater(() -> {
+                jTabbedPane1.setSelectedIndex(2);
+            });
         }
     }//GEN-LAST:event_btn_simularActionPerformed
 
@@ -456,23 +462,35 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_clientes_perdidosActionPerformed
 
-    private void txtMinutosASimularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMinutosASimularActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtMinutosASimularActionPerformed
-
     private void txt_clientes_atendidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_clientes_atendidosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_clientes_atendidosActionPerformed
+
+    private void btn_setearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_setearActionPerformed
+        // TODO add your handling code here:
+        
+        Configuracion config = Configuracion.getConfiguracionPorDefecto();
+        txtMinutosASimular.setText("" + config.getMinutosASimular());
+        txtIteracionesAMostrar.setText("" + config.getIteracionesAMostrar());
+        txtMinutoDesde.setText("" + config.getMinutoDesde());
+        txtTiempoAtencionDesde.setText("" + config.getTiempoAtencionDesde());
+        txtTiempoAtencionHasta.setText("" + config.getTiempoAtencionHasta());
+        txtLlegadaClienteMedia.setText("" + config.getMediaLlegadaClientes());
+    }//GEN-LAST:event_btn_setearActionPerformed
 
     private void txtTiempoAtencionHastaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTiempoAtencionHastaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTiempoAtencionHastaActionPerformed
 
+    private void txtMinutosASimularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMinutosASimularActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMinutosASimularActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_setear;
     private javax.swing.JButton btn_simular;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
@@ -494,9 +512,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField txtIteracionesAMostrar;
     private javax.swing.JTextField txtLlegadaClienteMedia;
     private javax.swing.JTextField txtMinutoDesde;
@@ -509,13 +528,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private boolean validarMinutoDesdeMayorACantMinutosASimular() {
-        return (Double.parseDouble(txtMinutoDesde.getText()) > Double.parseDouble(txtIteracionesAMostrar.getText()));
+        return (Double.parseDouble(txtMinutoDesde.getText()) > Double.parseDouble(txtMinutosASimular.getText()));
     }
-    
+
     private void crearTabla() {
         /**
-         * Crear variable de clase para JTable
-         * Crear variable de clase para VectorEstadoTableModel
+         * Crear variable de clase para JTable Crear variable de clase para
+         * VectorEstadoTableModel
          */
         model = new VectorEstadoTableModel();
         tabla = new JTable(model);
@@ -531,17 +550,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 //Ignore extra messages.
-                if (e.getValueIsAdjusting()) return;
+                if (e.getValueIsAdjusting()) {
+                    return;
+                }
 
-                ListSelectionModel lsm =
-                    (ListSelectionModel)e.getSource();
+                ListSelectionModel lsm
+                        = (ListSelectionModel) e.getSource();
 
                 if (lsm.isSelectionEmpty()) {
                     //...//no rows are selected
                 } else {
                     int selectedRow = lsm.getMinSelectionIndex();
-                    if (model.getDato(selectedRow) != null)
-                    {
+                    if (model.getDato(selectedRow) != null) {
                         setClientesModel(model.getDato(selectedRow).getClientes());
                     }
 
@@ -554,13 +574,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
     }
 
-    public void setearModelo(List<VectorEstadoUI> modelo) 
-    {
+    public void setearModelo(List<VectorEstadoUI> modelo) {
         model.setDatos(modelo);
         model.fireTableDataChanged();
     }
-    
-    private void setear_defecto() {                                                   
+
+    private void setear_defecto() {
         Configuracion config = Configuracion.getConfiguracionPorDefecto();
         txtMinutosASimular.setText("" + config.getMinutosASimular());
         txtIteracionesAMostrar.setText("" + config.getIteracionesAMostrar());
@@ -569,10 +588,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         txtTiempoAtencionHasta.setText("" + config.getTiempoAtencionHasta());
         txtLlegadaClienteMedia.setText("" + config.getMediaLlegadaClientes());
     }
-    
+
     private void calcular_estadisticas() {
         DecimalFormat formater = new DecimalFormat("0.0000");
-        
+
         txt_clientes_atendidos.setText(String.valueOf(formater.format(controlador.getEstadisticas().getClientes_atendidos())));
         txt_clientes_que_volviero.setText(String.valueOf(formater.format(controlador.getEstadisticas().getClientes_que_volvieron())));
         txt_clientes_perdidos.setText(String.valueOf(formater.format(controlador.getEstadisticas().getClientes_perdidos())));
@@ -587,104 +606,72 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         txtIteracionesAMostrar.setInputVerifier(intVer);
         txtMinutoDesde.setInputVerifier(intVer);
         txtMinutosASimular.setInputVerifier(intVer);
-        
+
     }
 
-    private void actualizarConfiguracion() throws InputException
-    {
-        
-           
-        try
-        {
-            if (Double.isNaN(Double.parseDouble(txtTiempoAtencionDesde.getText())) ||
-                    Double.parseDouble(txtTiempoAtencionDesde.getText()) < 0)
-            {
-                throw new InputException("Tiempo inscripcion desde invalido");
+    private void actualizarConfiguracion() throws InputException {
+
+        try {
+            if (Double.isNaN(Double.parseDouble(txtTiempoAtencionDesde.getText()))
+                    || Double.parseDouble(txtTiempoAtencionDesde.getText()) < 0) {
+                throw new InputException("Tiempo atención desde invalido");
             }
-        }
-        catch (NumberFormatException nfe)
-        {
-            throw new InputException("Tiempo inscripcion desde invalido");
+        } catch (NumberFormatException nfe) {
+            throw new InputException("Tiempo atención desde invalido");
         }
         Double tiempoInscripcionDesde = Double.parseDouble(txtTiempoAtencionDesde.getText());
-        
-        
-        try
-        {
-            if (Double.isNaN(Double.parseDouble(txtTiempoAtencionHasta.getText())) ||
-                    Double.parseDouble(txtTiempoAtencionHasta.getText()) < 0)
-            {
-                throw new InputException("Tiempo inscripcion hasta invalido");
+
+        try {
+            if (Double.isNaN(Double.parseDouble(txtTiempoAtencionHasta.getText()))
+                    || Double.parseDouble(txtTiempoAtencionHasta.getText()) < 0) {
+                throw new InputException("Tiempo atención hasta invalido");
             }
-        }
-        catch (NumberFormatException nfe)
-        {
-            throw new InputException("Tiempo inscripcion hasta invalido");
+        } catch (NumberFormatException nfe) {
+            throw new InputException("Tiempo atención hasta invalido");
         }
         Double tiempoInscripcionHasta = Double.parseDouble(txtTiempoAtencionHasta.getText());
-        
-        if (tiempoInscripcionHasta <= tiempoInscripcionDesde)
-        {
-            throw new InputException("Tiempo inscripcion el desde debe ser menor al hasta");
+
+        if (tiempoInscripcionHasta <= tiempoInscripcionDesde) {
+            throw new InputException("Tiempo atención el desde debe ser menor al hasta");
         }
-        
-        
-        try
-        {
-            if (Double.isNaN(Double.parseDouble(txtLlegadaClienteMedia.getText())) ||
-                    Double.parseDouble(txtLlegadaClienteMedia.getText()) < 0)
-            {
-                throw new InputException("Media llegada alumnos invalido");
+
+        try {
+            if (Double.isNaN(Double.parseDouble(txtLlegadaClienteMedia.getText()))
+                    || Double.parseDouble(txtLlegadaClienteMedia.getText()) < 0) {
+                throw new InputException("Media llegada clientes invalido");
             }
-        }
-        catch (NumberFormatException nfe)
-        {
-            throw new InputException("Media llegada alumnos invalido");
+        } catch (NumberFormatException nfe) {
+            throw new InputException("Media llegada clientes invalido");
         }
         Double mediaLlegadaAlumnos = Double.parseDouble(txtLlegadaClienteMedia.getText());
-        
-      
-      
-        try
-        {
-            if (Integer.parseInt(txtMinutosASimular.getText()) < 0)
-            {
+
+        try {
+            if (Integer.parseInt(txtMinutosASimular.getText()) < 0) {
                 throw new InputException("Minutos a sumular invalidos");
             }
-        }
-        catch (NumberFormatException nfe)
-        {
+        } catch (NumberFormatException nfe) {
             throw new InputException("Minutos a sumular invalidos");
         }
         int minutosASimular = Integer.parseInt(txtMinutosASimular.getText());
-        
-        try
-        {
-            if (Integer.parseInt(txtMinutoDesde.getText()) < 0)
-            {
+
+        try {
+            if (Integer.parseInt(txtMinutoDesde.getText()) < 0) {
                 throw new InputException("Minuto desde invalido");
             }
-        }
-        catch (NumberFormatException nfe)
-        {
+        } catch (NumberFormatException nfe) {
             throw new InputException("Minuto desde invalido");
         }
         int minutoDesde = Integer.parseInt(txtMinutoDesde.getText());
-        
-        try
-        {
-            if (Integer.parseInt(txtIteracionesAMostrar.getText()) < 0)
-            {
+
+        try {
+            if (Integer.parseInt(txtIteracionesAMostrar.getText()) < 0) {
                 throw new InputException("Iteraciones a mostrar invalidos");
             }
-        }
-        catch (NumberFormatException nfe)
-        {
+        } catch (NumberFormatException nfe) {
             throw new InputException("Iteraciones a mostrar invalidos");
         }
         int iteracionesAMostrar = Integer.parseInt(txtIteracionesAMostrar.getText());
 
-        
         Configuracion conf = Configuracion.getConfiguracion();
         conf.setIteracionesAMostrar(iteracionesAMostrar);
         conf.setMediaLlegadaClientes(mediaLlegadaAlumnos);
@@ -692,94 +679,77 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         conf.setMinutosASimular(minutosASimular);
         conf.setTiempoAtencionDesde(tiempoInscripcionDesde);
         conf.setTiempoAtencionHasta(tiempoInscripcionHasta);
-         //Successs
+        //Successs
     }
 
-    private static class InputException extends Exception{
+    private static class InputException extends Exception {
 
-        public InputException(String msg)
-        {
+        public InputException(String msg) {
             super(msg);
         }
     }
-    
-    private class DoubleInputVerifier extends InputVerifier
-    {
+
+    private class DoubleInputVerifier extends InputVerifier {
+
         @Override
         public boolean verify(JComponent input) {
-            if (input instanceof JTextField)
-            {
+            if (input instanceof JTextField) {
                 JTextField txt = (JTextField) input;
-                try
-                {
+                try {
                     Double val = obtenerValorDeCampo(txt);
 
-                    if (val > 0)
-                    {
+                    if (val > 0) {
                         return true;
                     }
-                }
-                catch (NumberFormatException nfe)
-                {
+                } catch (NumberFormatException nfe) {
                     return false;
                 }
             }
             return false;
         }
+
         @Override
-        public boolean shouldYieldFocus(JComponent input)
-        {
+        public boolean shouldYieldFocus(JComponent input) {
             return true;
         }
     }
-    
-    private Double obtenerValorDeCampo(JTextField txt)
-    {
+
+    private Double obtenerValorDeCampo(JTextField txt) {
         String entrada = txt.getText();
-        if (entrada != null && !entrada.isEmpty())
-        {
+        if (entrada != null && !entrada.isEmpty()) {
             return Double.parseDouble(entrada);
         }
         throw new NumberFormatException(entrada);
     }
-    
-    private class IntegerInputVerifier extends InputVerifier
-    {
+
+    private class IntegerInputVerifier extends InputVerifier {
 
         @Override
         public boolean verify(JComponent input) {
-            if (input instanceof JTextField)
-            {
+            if (input instanceof JTextField) {
                 JTextField txt = (JTextField) input;
-                try
-                {
+                try {
                     Integer val = obtenerValorDeCampoEnInt(txt);
 
-                    if (val > 0)
-                    {
+                    if (val > 0) {
                         return true;
                     }
-                }
-                catch (NumberFormatException nfe)
-                {
+                } catch (NumberFormatException nfe) {
                     return false;
                 }
             }
             return false;
         }
-        
+
         @Override
-        public boolean shouldYieldFocus(JComponent input)
-        {
+        public boolean shouldYieldFocus(JComponent input) {
             return true;
         }
     }
-    
-    private Integer obtenerValorDeCampoEnInt(JTextField txt)
-    {
+
+    private Integer obtenerValorDeCampoEnInt(JTextField txt) {
         String entrada = txt.getText();
-        if (entrada != null && !entrada.isEmpty())
-        {
+        if (entrada != null && !entrada.isEmpty()) {
             return Integer.parseInt(entrada);
         }
         throw new NumberFormatException(entrada);

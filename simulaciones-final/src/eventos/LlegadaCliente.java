@@ -3,8 +3,8 @@ package eventos;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class LlegadaCliente implements Cloneable{
-    
+public class LlegadaCliente implements Cloneable {
+
     private double rnd;
     private double tiempo_entre_llegadas;
     private double prox_llegada;
@@ -42,12 +42,12 @@ public class LlegadaCliente implements Cloneable{
     public void setProx_llegada(double prox_llegada) {
         this.prox_llegada = prox_llegada;
     }
-    
+
     @Override
     public LlegadaCliente clone() {
         try {
             LlegadaCliente clon = (LlegadaCliente) super.clone();
-            clon.prox_llegada= this.prox_llegada;
+            clon.prox_llegada = this.prox_llegada;
             clon.rnd = Double.MAX_VALUE; //En la UI este valor no deberia mostrarse
             clon.tiempo_entre_llegadas = Double.MAX_VALUE; //Same as above
 

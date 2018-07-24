@@ -14,32 +14,28 @@ import objects.Cliente;
 import objects.ColaClientes;
 import objects.Servidor;
 
-
-public class VectorEstado implements VectorEstadoUI
-{
+public class VectorEstado implements VectorEstadoUI {
 
     private double reloj;
-    
+
     private Evento evento;
-    
-    private LlegadaCliente llegadaCliente;    
-    
+
+    private LlegadaCliente llegadaCliente;
+
     private ColaClientes colaClientes;
-    
+
     private FinAtecion finAtencion;
-       
+
     private int acumuladoAtendidos;
-    
+
     private int acumuladoClientesPerdidos;
-    
+
     private int acumuladoClientesQueLleganYSeVan;
-    
+
     private Servidor servidor;
-    
+
     private List<Cliente> clientes;
-    
- 
-    
+
     @Override
     public double getReloj() {
         return reloj;
@@ -55,7 +51,6 @@ public class VectorEstado implements VectorEstadoUI
         return llegadaCliente;
     }
 
-   
     @Override
     public ColaClientes getColaClientes() {
         return colaClientes;
@@ -65,7 +60,6 @@ public class VectorEstado implements VectorEstadoUI
     public FinAtecion getFinAtencion() {
         return finAtencion;
     }
-   
 
     @Override
     public int getAcumuladoAtendidos() {
@@ -103,7 +97,6 @@ public class VectorEstado implements VectorEstadoUI
     public void setLlegadaCliente(LlegadaCliente llegadaCliente) {
         this.llegadaCliente = llegadaCliente;
     }
-   
 
     public void setColaClientes(ColaClientes colaClientes) {
         this.colaClientes = colaClientes;
@@ -112,7 +105,6 @@ public class VectorEstado implements VectorEstadoUI
     public void setFinAtencion(FinAtecion finAtencion) {
         this.finAtencion = finAtencion;
     }
-   
 
     public void setAcumuladoAtendidos(int acumuladoAtendidos) {
         this.acumuladoAtendidos = acumuladoAtendidos;

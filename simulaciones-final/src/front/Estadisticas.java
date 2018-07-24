@@ -1,11 +1,10 @@
 package front;
 
-
 public class Estadisticas {
+
     private int clientes_atendidos;
     private int clientes_que_volvieron;
     private int clientes_perdidos;
-    
 
     public Estadisticas(int clientes_atendidos, int clientes_que_volvieron, int clientes_perdidos) {
         this.clientes_atendidos = clientes_atendidos;
@@ -39,7 +38,5 @@ public class Estadisticas {
     public void setClientes_perdidos(int clientes_perdidos) {
         this.clientes_perdidos = clientes_perdidos;
     }
-      
-    
-    
+
 }

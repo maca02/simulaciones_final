@@ -5,8 +5,8 @@
  */
 package front.tablemodel;
 
-
 public class Columna {
+
     private String name;
     private Class tipo;
     private int size;

@@ -15,7 +15,7 @@ public class PopUpClientes extends javax.swing.JFrame {
     private List<Cliente> clientes;
     private JTable tabla;
     private ClienteTableModel tableModel;
-    
+
     /**
      * Creates new form PopUpAlumnos
      */
@@ -32,6 +32,7 @@ public class PopUpClientes extends javax.swing.JFrame {
         initComponents();
         setearTabla();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -69,7 +70,7 @@ public class PopUpClientes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     void setClientes(List<Cliente> clientes) {
-        
+
         this.clientes = clientes;
         tableModel.fireTableDataChanged();
     }
@@ -84,42 +85,33 @@ public class PopUpClientes extends javax.swing.JFrame {
         tableModel = new ClienteTableModel();
         tabla.setModel(tableModel);
     }
-    
-    private class ClienteTableModel extends DefaultTableModel
-    {
+
+    private class ClienteTableModel extends DefaultTableModel {
+
         @Override
-        public Object getValueAt(int row, int col) 
-        {
+        public Object getValueAt(int row, int col) {
             Object value = null;
-            if (row >= 0 && clientes != null)
-            {
+            if (row >= 0 && clientes != null) {
                 Cliente cliente = clientes.get(row);
-                switch (col)
-                {
-                    case 0:
-                    {
+                switch (col) {
+                    case 0: {
                         value = cliente.getEstado().name();
                         break;
                     }
-                    case 1:
-                    {
+                    case 1: {
                         value = cliente.getRegreso().name();
                         break;
                     }
-                    case 2: 
-                    {
+                    case 2: {
                         value = cliente.getHora_regreso_sistema();
-                        if (value instanceof Double && ((Double)value) == Double.MAX_VALUE)
-                        {
+                        if (value instanceof Double && ((Double) value) == Double.MAX_VALUE) {
                             value = Double.valueOf(0);
                         }
                         break;
                     }
-                    case 3:
-                    {
+                    case 3: {
                         value = cliente.getTiempo_esperando();
-                        if (value instanceof Double && ((Double)value) == Double.MAX_VALUE)
-                        {
+                        if (value instanceof Double && ((Double) value) == Double.MAX_VALUE) {
                             value = Double.valueOf(0);
                         }
                         break;
@@ -128,7 +120,7 @@ public class PopUpClientes extends javax.swing.JFrame {
             }
             return value;
         }
-            
+
         @Override
         public int getRowCount() {
             return clientes != null ? clientes.size() : 0;
@@ -141,26 +133,21 @@ public class PopUpClientes extends javax.swing.JFrame {
 
         @Override
         public String getColumnName(int columnIndex) {
-            String colName ="";
-            switch (columnIndex)
-            {
-                case 0:
-                {
+            String colName = "";
+            switch (columnIndex) {
+                case 0: {
                     colName = "Estado";
                     break;
                 }
-                case 1:
-                {
+                case 1: {
                     colName = "Ha regresado?";
                     break;
                 }
-                case 2:
-                {
+                case 2: {
                     colName = "Hora regreso";
                     break;
                 }
-                case 3:
-                {
+                case 3: {
                     colName = "Tiempo Esperando";
                     break;
                 }
@@ -170,22 +157,17 @@ public class PopUpClientes extends javax.swing.JFrame {
 
         @Override
         public Class<?> getColumnClass(int columnIndex) {
-            switch (columnIndex)
-            {
-                case 0:
-                {
+            switch (columnIndex) {
+                case 0: {
                     return String.class;
                 }
-                case 1:
-                {
+                case 1: {
                     return String.class;
                 }
-                case 2:
-                {
+                case 2: {
                     return Double.class;
                 }
-                case 3:
-                {
+                case 3: {
                     return Double.class;
                 }
             }
