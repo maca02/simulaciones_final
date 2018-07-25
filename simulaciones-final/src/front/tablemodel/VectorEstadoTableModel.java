@@ -134,11 +134,11 @@ public final class VectorEstadoTableModel extends DefaultTableModel implements V
         columns.add(new Columna("RND: Fin Atencion: RND", Double.class, 150));
         columns.add(new Columna("Tiempo Fin Atencion", Double.class, 150));
         columns.add(new Columna("Proximo Fin de Atencion", Double.class, 160));
-        columns.add(new Columna("Estado Encargado", String.class, 300));
+        columns.add(new Columna("Estado Servidor", String.class, 300));
         columns.add(new Columna("Cola", Integer.class, 50));
         columns.add(new Columna("Acum. Fin Atencion", String.class, 125));
-        columns.add(new Columna("Acum. Clientes que se pierden", String.class, 200));
-        columns.add(new Columna("Acum. Clientes que llegan y se van", String.class, 200));
+        columns.add(new Columna("Acum. Perdida por exc. de fila", String.class, 200));
+        columns.add(new Columna("Acum. Perdida por tardanza", String.class, 200));
 
     }
 

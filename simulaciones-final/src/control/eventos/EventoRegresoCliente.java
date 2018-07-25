@@ -154,25 +154,34 @@ public class EventoRegresoCliente extends Evento {
                     } else if (actual.getColaClientes().getColaClientes() >= 10) {
                         //Se va de nuevo el...
 
-                        actual.setAcumuladoClientesPerdidos(actual.getAcumuladoClientesPerdidos() + 1);
+                        //actual.setAcumuladoClientesPerdidos(actual.getAcumuladoClientesPerdidos() + 1);
                         cli.setEstado(Cliente.Estado.ESPERANDO_ATENCION);
                         double espe = 0.0;
                         for (Cliente cliente : actual.getClientes()) {
                             if (cliente.equals(clienteQueVuelve.get(0))) {
                                 cliente.setTiempo_esperando(espe);
+                                cliente.setHora_regreso_sistema(espe);
                             } else {
                                 Cliente clienteQueSeFue = calculoTiempoEspera(cliente, actual, anterior);
                                 ClientesABorrar.add(clienteQueSeFue);
                             }
                         }
                         actual.getClientes().removeAll(ClientesABorrar);
-                        actual.getClientes().remove(cli);
+                        if (actual.getColaClientes().getColaClientes() == 10) {
+                            actual.setAcumuladoClientesPerdidos(actual.getAcumuladoClientesPerdidos() + 1);
+                            actual.getClientes().remove(cli);
+                        } else {
+                            actual.getColaClientes().agregarAlumnoCola();
+
+                        }
+                        //actual.getClientes().removeAll(ClientesABorrar);
+                        //actual.getClientes().remove(cli);
 
                     } else {
                         //A la cola
                         cli.setEstado(Cliente.Estado.ESPERANDO_ATENCION);
 
-                        actual.getColaClientes().agregarAlumnoCola();
+                        //actual.getColaClientes().agregarAlumnoCola();
                         double espe = 0.0;
                         for (Cliente cliente : actual.getClientes()) {
                             if (cliente.equals(clienteQueVuelve.get(0))) {
@@ -182,11 +191,17 @@ public class EventoRegresoCliente extends Evento {
                             } else {
                                 Cliente clienteQueSeFue = calculoTiempoEspera(cliente, actual, anterior);
                                 ClientesABorrar.add(clienteQueSeFue);
+                            }
+                        }
+                        actual.getClientes().removeAll(ClientesABorrar);
+                        if (actual.getColaClientes().getColaClientes() == 10) {
+                            actual.setAcumuladoClientesPerdidos(actual.getAcumuladoClientesPerdidos() + 1);
+                            actual.getClientes().remove(cli);
+                        } else {
+                            actual.getColaClientes().agregarAlumnoCola();
+                        }
                     }
-                }
-                actual.getClientes().removeAll(ClientesABorrar);
-                    }
-                } //para los demas clientes en clieteQueVuelve
+                }        //para los demas clientes en clieteQueVuelve
                 else {
                     if (actual.getColaClientes().getColaClientes() == 0) {
 //                        Servidor servidor = actual.getServidor();
@@ -237,14 +252,14 @@ public class EventoRegresoCliente extends Evento {
 
                         actual.getColaClientes().agregarAlumnoCola();
                         double espe = 0.0;
-                        for (Cliente cliente : actual.getClientes()) {
-                            if (cliente.equals(cli)) {
-                                cliente.setTiempo_esperando(espe);
-                                cliente.setHora_regreso_sistema(espe);
+                        //for (Cliente cliente : actual.getClientes()) {
+                            //if (cliente.equals(cli)) {
+                                cli.setTiempo_esperando(espe);
+                                cli.setHora_regreso_sistema(espe);
 
-                            }
+                            //}
 
-                        }
+                        //}
                     }
                 }
             }

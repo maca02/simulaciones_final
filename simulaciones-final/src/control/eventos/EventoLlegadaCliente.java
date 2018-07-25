@@ -105,8 +105,10 @@ public class EventoLlegadaCliente extends Evento {
                     ClientesABorrar.add(clienteQueSeFue);
                 }
             }
-            
+            // Borra los ctes que ya han vuelto y su tiempo de espera supera los 20 min
             actual.getClientes().removeAll(ClientesABorrar);
+            //Si luego del borrado lo cola es = a 10 entonces se borra al cte nuevo
+            // sino lo agrega a la cola
             if (actual.getColaClientes().getColaClientes() == 10){
             actual.setAcumuladoClientesPerdidos(actual.getAcumuladoClientesPerdidos() + 1);
             actual.getClientes().remove(newCliente);

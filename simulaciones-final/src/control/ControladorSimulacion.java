@@ -60,19 +60,23 @@ public class ControladorSimulacion {
 
             //Setear este evento dentro del vector actual y llamar al metodo polimorfico:
             actual.setEvento(nuevoEvento);
-//          
+//           
             actual.getEvento().actualizarEstadoVector();
 
             //Ademas de la validacion general, tmb se agrega cuando es la ultima fila
-            if (seMuestra(iteracionesMostrando)
+            if (seMuestra(iteracionesMostrando) 
                     || !(iteracionActual + 1 < 1000000 && actual.getReloj() < minutosASimular)) {
+                
                 //Guardar en la lista a devolver
                 guardarVectorParaVista();
                 iteracionesMostrando++;
             }
+            
             iteracionActual++;
 
         } while (iteracionActual < 1000000 && actual.getReloj() < minutosASimular);
+        
+        
         //Actualizar Vista
         vistaAplicacion.setearModelo(modelo);
         //Calculo de los estadisticos
@@ -100,6 +104,7 @@ public class ControladorSimulacion {
     }
 
     private void inicializar() {
+       
         actual = new VectorEstado();
         actual.setReloj(0);
         actual.setEvento(Evento.Inicial);
@@ -108,6 +113,7 @@ public class ControladorSimulacion {
         if (seMuestra(0)) {
             //Guardar en la lista a devolver
             guardarVectorParaVista();
+            
         }
         actual = actual;
     }
@@ -154,7 +160,7 @@ public class ControladorSimulacion {
 
         }
         if (seMuestra) {
-            seMuestra = seMuestra && iteracionActual <= Configuracion.getConfiguracion().getIteracionesAMostrar();
+            seMuestra = seMuestra && iteracionActual < Configuracion.getConfiguracion().getIteracionesAMostrar();
         }
         return seMuestra;
     }

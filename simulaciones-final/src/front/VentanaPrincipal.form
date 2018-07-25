@@ -241,6 +241,9 @@
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
                     <Property name="columns" type="int" value="20"/>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Monospaced" size="18" style="0"/>
+                    </Property>
                     <Property name="rows" type="int" value="5"/>
                     <Property name="text" type="java.lang.String" value="Llegan clientes a solicitar un servicio siguiendo una distribuci&#xf3;n exponencial con una media de 5 min entre llegadas.&#xa;Hay una sola cabina de atenci&#xf3;n a los clientes; el tiempo de atenci&#xf3;n de cada persona sigue una distribuci&#xf3;n uniforme entre 7.5 y 10.5  minutos.&#xa;Si la persona lleva m&#xe1;s de 20 minutos esperando a ser atendida, saldr&#xe1; de la fila y regresar&#xe1; al cabo de una hora a intentarlo de nuevo. Adem&#xe1;s, las personas que se han &#xa;retirado de la fila y han regresado, vuelven con una prioridad de atenci&#xf3;n, es decir, ser&#xe1;n atendidas primero que aquellos clientes que lo intentan por primera vez. &#xa;Si el cliente, despu&#xe9;s de regresar, vuelve a esperar 20 minutos a ser atendido, se retirar&#xe1; y no volver&#xe1;. Adem&#xe1;s, si hay diez personas en espera, los clientes que llegan se &#xa;retirar&#xe1;n inmediatamente.&#xa;&#xa;a)&#x9;&#xbf;Cu&#xe1;ntos clientes atendidos en diez (10) horas?&#xa;b)&#x9;&#xbf;Cu&#xe1;ntos se pierden por la tardanza en el servicio? (los que vuelven y se van de nuevo)&#xa;c)&#x9;&#xbf;Cu&#xe1;ntos se pierden por exceso de fila?&#xa;&#xa;"/>
                   </Properties>

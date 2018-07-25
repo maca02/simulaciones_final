@@ -182,6 +182,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
         jTextArea1.setRows(5);
         jTextArea1.setText("Llegan clientes a solicitar un servicio siguiendo una distribución exponencial con una media de 5 min entre llegadas.\nHay una sola cabina de atención a los clientes; el tiempo de atención de cada persona sigue una distribución uniforme entre 7.5 y 10.5  minutos.\nSi la persona lleva más de 20 minutos esperando a ser atendida, saldrá de la fila y regresará al cabo de una hora a intentarlo de nuevo. Además, las personas que se han \nretirado de la fila y han regresado, vuelven con una prioridad de atención, es decir, serán atendidas primero que aquellos clientes que lo intentan por primera vez. \nSi el cliente, después de regresar, vuelve a esperar 20 minutos a ser atendido, se retirará y no volverá. Además, si hay diez personas en espera, los clientes que llegan se \nretirarán inmediatamente.\n\na)\t¿Cuántos clientes atendidos en diez (10) horas?\nb)\t¿Cuántos se pierden por la tardanza en el servicio? (los que vuelven y se van de nuevo)\nc)\t¿Cuántos se pierden por exceso de fila?\n\n");
         jScrollPane1.setViewportView(jTextArea1);
@@ -590,11 +591,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     private void calcular_estadisticas() {
-        DecimalFormat formater = new DecimalFormat("0.0000");
+        //DecimalFormat formater = new DecimalFormat("0.0000");
 
-        txt_clientes_atendidos.setText(String.valueOf(formater.format(controlador.getEstadisticas().getClientes_atendidos())));
-        txt_clientes_que_volviero.setText(String.valueOf(formater.format(controlador.getEstadisticas().getClientes_que_volvieron())));
-        txt_clientes_perdidos.setText(String.valueOf(formater.format(controlador.getEstadisticas().getClientes_perdidos())));
+        txt_clientes_atendidos.setText(String.valueOf(controlador.getEstadisticas().getClientes_atendidos()));
+        txt_clientes_que_volviero.setText(String.valueOf((controlador.getEstadisticas().getClientes_que_volvieron())));
+        txt_clientes_perdidos.setText(String.valueOf((controlador.getEstadisticas().getClientes_perdidos())));
     }
 
     private void setearModeloDeTextos() {
